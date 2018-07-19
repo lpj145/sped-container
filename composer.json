@@ -1,0 +1,21 @@
+{
+  "name": "marcosadantas/SpedTransform",
+  "description": "Is a library to serialize sped",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marcos Dantas",
+      "email": "marcos.adantas@hotmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SpedTransform\\": "src/"
+    }
+  },
+  "require": {
+    "cakephp/i18n": "dev-master",
+    "adbario/php-dot-notation": "2.x-dev"
+  }
+}
