@@ -1,12 +1,18 @@
 <?php
 namespace SpedTransform\Support;
 
+use SpedTransform\Macro\DateFormat;
+use SpedTransform\Macro\Precision;
+use SpedTransform\Macro\SanitizeString;
 use SpedTransform\Support\IterableArray;
 use SpedTransform\Support\SpedAttribute;
 
 abstract class AbstractAttribute implements SpedAttribute
 {
-    use IterableArray;
+    use IterableArray,
+        Precision,
+        SanitizeString,
+        DateFormat;
     /**
      * @var array
      */
