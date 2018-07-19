@@ -1,5 +1,5 @@
 {
-  "name": "marcosadantas/SpedTransform",
+  "name": "marcosadantas/sped-container",
   "description": "Is a library to serialize sped",
   "minimum-stability": "stable",
   "license": "MIT",
