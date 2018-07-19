@@ -3,6 +3,7 @@
   "description": "Is a library to serialize sped",
   "minimum-stability": "stable",
   "license": "MIT",
+  "version": "master",
   "authors": [
     {
       "name": "Marcos Dantas",
