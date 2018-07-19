@@ -1,9 +1,8 @@
 {
   "name": "marcosadantas/sped-container",
   "description": "Is a library to serialize sped",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "license": "MIT",
-  "version": "master",
   "authors": [
     {
       "name": "Marcos Dantas",
