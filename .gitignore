@@ -3,3 +3,4 @@ vendor/
 test.php
 data.json
 composer.lock
+cache.php

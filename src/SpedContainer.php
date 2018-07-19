@@ -39,7 +39,7 @@ class SpedContainer
      */
     public function getConfigCache()
     {
-        return array_merge($this->configs, ['cached' => true]);
+        return array_merge($this->configs, [self::CACHE_CONFIG_NAME => true]);
     }
 
     public function execute()
