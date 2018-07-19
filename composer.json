@@ -2,7 +2,9 @@
   "name": "marcosadantas/sped-container",
   "description": "Is a library to serialize sped",
   "minimum-stability": "dev",
+  "version": "1.0-beta1",
   "license": "MIT",
+  "type": "container",
   "authors": [
     {
       "name": "Marcos Dantas",
@@ -15,6 +17,7 @@
     }
   },
   "require": {
+    "php": "^7.1",
     "cakephp/i18n": "dev-master",
     "adbario/php-dot-notation": "2.x-dev"
   }
