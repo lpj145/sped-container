@@ -1,8 +1,7 @@
 {
   "name": "marcosadantas/sped-container",
   "description": "Is a library to serialize sped",
-  "minimum-stability": "stable",
-  "version": "1.0-beta1",
+  "minimum-stability": "dev",
   "license": "MIT",
   "type": "container",
   "authors": [
@@ -17,7 +16,7 @@
     }
   },
   "require": {
-    "php": "^7.1",
+    "php": ">=7.1",
     "cakephp/i18n": "dev-master",
     "adbario/php-dot-notation": "2.x-dev"
   }
