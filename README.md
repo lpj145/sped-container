@@ -45,7 +45,7 @@ $spedContainer->execute();
 O container usa solução baseada em reflection e pra isso foi implementado o metódo ``getConfigCache`` que retornará o array da configuração atual, caso o guarde num arquivo, o desempenho melhorará significativamente.
 
 ##### Injeção
-Basicamente todo atributo só estará disponivel para uso depois de executado suas "regras" no entando, antes de injetar o container se certifica e executa isto.
+Basicamente todo atributo só estará disponivel para uso depois de executado suas "regras" no entanto, antes de injetar o container se certifica e executa isto.
 
 ##### AbstractAttribute
 Há algumas necessidades conforme implementar a interface, essa classe abstrata acabará com boa parte delas, também ela tem implementada por padrão o uso de traits para:
