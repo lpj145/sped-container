@@ -18,6 +18,6 @@
   "require": {
     "php": ">=7.1",
     "cakephp/i18n": "3.6.7",
-    "adbario/php-dot-notation": "2.x-dev"
+    "adbario/php-dot-notation": "2.0.0"
   }
 }
