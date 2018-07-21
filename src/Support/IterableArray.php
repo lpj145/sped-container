@@ -9,7 +9,7 @@ trait IterableArray
      * @param callable $c
      * @param mixed ...$options
      */
-    private function each($items, callable $c, ...$options)
+    protected function each($items, callable $c, ...$options)
     {
         foreach ($items as $key => $item) {
             if (null === $options) {
