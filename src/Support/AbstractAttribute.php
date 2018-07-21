@@ -86,8 +86,18 @@ abstract class AbstractAttribute implements SpedAttribute
 
     protected function insert($key, $data)
     {
+        if ($this->have($key)) {
+            $this->data[$key] += $data;
+            return $this;
+        }
+
         $this->data[$key] = $data;
         return $this;
+    }
+
+    protected function have($key)
+    {
+        return isset($this->data[$key]);
     }
 
     protected function remove($key)
