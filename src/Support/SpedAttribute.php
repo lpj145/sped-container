@@ -9,7 +9,9 @@ use SpedTransform\SpedCollection;
  */
 interface SpedAttribute
 {
-    public function getSpedCollection(): SpedCollection;
+    public function toStd(): \stdClass;
+
+    public function toArray(): array;
 
     public function isExecuted(): bool;
 }
