@@ -1,5 +1,6 @@
 <?php
 namespace SpedTransform\Support;
+use SpedTransform\SpedCollection;
 
 /**
  * Interface SpedAttribute
@@ -8,9 +9,7 @@ namespace SpedTransform\Support;
  */
 interface SpedAttribute
 {
-    public function toStd(): \stdClass;
-
-    public function toArray(): array;
+    public function getSpedCollection(): SpedCollection;
 
     public function isExecuted(): bool;
 }
