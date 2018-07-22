@@ -51,7 +51,6 @@ class SpedCollection
         $items = [];
         array_map(function(&$ruleName, $ruleOptions) use (&$items){
             $value = $ruleOptions['default'] ?? null;
-            $insertIn = $ruleOptions['insertIn'] ?? null;
 
             if (null === $value = $this->get($ruleName, $value)) {
                 return;
