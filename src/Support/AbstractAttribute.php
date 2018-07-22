@@ -119,4 +119,48 @@ abstract class AbstractAttribute implements SpedAttribute
     {
         return array_key_exists($key, $this->aliases) ? $this->aliases[$key] : null;
     }
+
+    /**
+     * @param $indexName
+     * @param array $options
+     */
+    protected function hydratValue($indexName, array $options = [])
+    {
+        $value = $this->get($indexName);
+
+        if (isset($options['callbacks'])) {
+            $value = $this->runValueCallback($options['callbacks'], $value);
+        }
+
+        if (isset($options['translate'])) {
+            $this->remove($indexName);
+            $indexName = $this->getAlias($indexName);
+        }
+
+        if (isset($options['namespace'])) {
+            $this->insert($options['namespace'], [$indexName => $value]);
+        }
+
+        if (isset($options['exclude'])) {
+            $this->remove($indexName);
+        }
+    }
+
+    private function runValueCallback(array $callbacks, $data)
+    {
+        foreach ($callbacks as $callback) {
+            $data = $this->callCallback($callback, $data, $this);
+        }
+
+        return $data;
+    }
+
+    private function callCallback($func, $data, $object = null)
+    {
+        if (null === $object) {
+            return $func();
+        }
+
+        return call_user_func_array([$object, $func], [$data]);
+    }
 }
