@@ -4,6 +4,7 @@ namespace SpedTransform\Support;
 use SpedTransform\Macro\DateFormat;
 use SpedTransform\Macro\Precision;
 use SpedTransform\Macro\SanitizeString;
+use SpedTransform\SpedData;
 use SpedTransform\Support\IterableArray;
 use SpedTransform\Support\SpedAttribute;
 
@@ -14,9 +15,9 @@ abstract class AbstractAttribute implements SpedAttribute
         SanitizeString,
         DateFormat;
     /**
-     * @var array
+     * @var SpedData
      */
-    private $data = [];
+    private $data;
     /**
      * @var bool
      */
@@ -24,33 +25,11 @@ abstract class AbstractAttribute implements SpedAttribute
 
     protected $aliases = [];
 
-    /**
-     * @return \stdClass
-     */
-    public function toStd(): \stdClass
+    public function __construct()
     {
-        return (object)$this->data;
+        $this->data = new SpedData();
     }
 
-    /**
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return $this->data;
-    }
-
-    /**
-     * @param $key
-     * @param null $default
-     * @return mixed|null
-     */
-    public function get($key, $default = null)
-    {
-        return array_key_exists($key, $this->data) ?
-            $this->data[$key] :
-            $default;
-    }
 
     /**
      * @return bool
@@ -76,36 +55,6 @@ abstract class AbstractAttribute implements SpedAttribute
         return $data;
     }
 
-    /**
-     * @param array $data
-     */
-    protected function setData(array $data)
-    {
-        $this->data = $data;
-    }
-
-    protected function insert($key, $data)
-    {
-        if ($this->have($key)) {
-            $this->data[$key] += $data;
-            return $this;
-        }
-
-        $this->data[$key] = $data;
-        return $this;
-    }
-
-    protected function have($key)
-    {
-        return isset($this->data[$key]);
-    }
-
-    protected function remove($key)
-    {
-        unset($this->data[$key]);
-        return $this;
-    }
-
     protected function setExecuted()
     {
         $this->executed = true;
@@ -126,28 +75,42 @@ abstract class AbstractAttribute implements SpedAttribute
      */
     protected function hydratValue($indexName, array $options = [])
     {
-        $value = $this->get($indexName);
+        if (false === isset($options['reference'])) {
+            $options['reference'] = $this->data;
+        }
+
+        /** @var SpedData $data */
+        $data = $options['reference'];
+        $value = $data->get($indexName);
+
+        if (false === $data instanceof SpedData) {
+            throw new \InvalidArgumentException('Referente for hydrator \''.$indexName.'\' is not valid SpedData object');
+        }
 
         if (isset($options['callbacks'])) {
             $value = $this->runValueCallback($options['callbacks'], $value);
         }
 
         if (isset($options['translate'])) {
-            $this->remove($indexName);
+            $data->remove($indexName);
             $indexName = $this->getAlias($indexName);
         }
 
         if (isset($options['namespace'])) {
-            $this->insert($options['namespace'], [$indexName => $value]);
+            $data->insert($options['namespace'], [$indexName => $value]);
         }
 
         if (isset($options['exclude'])) {
-            $this->remove($indexName);
+            $data->remove($indexName);
         }
     }
 
-    private function runValueCallback(array $callbacks, $data)
+    private function runValueCallback($callbacks, $data)
     {
+        if (is_string($callbacks)) {
+            return $this->callCallback($callbacks, $data, $this);
+        }
+
         foreach ($callbacks as $callback) {
             $data = $this->callCallback($callback, $data, $this);
         }
