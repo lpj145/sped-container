@@ -128,6 +128,18 @@ class SpedCollection
             null !== $this->items[$key];
     }
 
+    public function insert($key, $data)
+    {
+        if ($this->has($key)) {
+            $this->items[$key] += $data;
+            return $this;
+        }
+
+        $this->items[$key] = $data;
+
+        return $this;
+    }
+
     /**
      * @param $key
      * @param null $default
