@@ -126,4 +126,24 @@ abstract class AbstractAttribute implements SpedAttribute
 
         return call_user_func_array([$object, $func], [$data]);
     }
+
+    public function toArray(): array
+    {
+        return $this->data->toArray();
+    }
+
+    public function toStd(): \stdClass
+    {
+        return $this->data->toStd();
+    }
+
+    public function setData($data)
+    {
+        $this->data->overwrite($data);
+    }
+
+    public function remove($key)
+    {
+        $this->data->remove($key);
+    }
 }
