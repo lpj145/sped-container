@@ -146,4 +146,9 @@ abstract class AbstractAttribute implements SpedAttribute
     {
         $this->data->remove($key);
     }
+
+    public function get($key, $default = null)
+    {
+        return $this->data->get($key, $default);
+    }
 }
