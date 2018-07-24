@@ -5,12 +5,12 @@ trait SanitizeString
 {
     public function toUpper($string)
     {
-        return strtoupper($string);
+        return mb_strtoupper($string);
     }
 
     public function toLower($string)
     {
-        return strtolower($string);
+        return mb_strtolower($string);
     }
 
     /**

@@ -7,7 +7,7 @@ use SpedTransform\Support\SpedAttribute;
 class SpedContainer
 {
     const CACHE_CONFIG_NAME = 'spedContainerCache';
-    const DATA_DEPDENCY_NAME = '_data';
+    const DATA_DEPENDENCY_NAME = '_data';
 
     /**
      * @var array
@@ -75,7 +75,7 @@ class SpedContainer
 
         $objects = [];
         foreach ($dependencies as $index => $dependency) {
-            if (self::DATA_DEPDENCY_NAME === $index) {
+            if (self::DATA_DEPENDENCY_NAME === $index) {
                 continue;
             }
 
@@ -148,7 +148,7 @@ class SpedContainer
         $classes = [];
         foreach ($classParams as $classParam) {
             if ($classParam->isArray()) {
-                $classes[$className][self::DATA_DEPDENCY_NAME] = strtolower(str_replace('Attribute', '', $classShortName));
+                $classes[$className][self::DATA_DEPENDENCY_NAME] = strtolower(str_replace('Attribute', '', $classShortName));
                 continue;
             }
 
@@ -204,8 +204,8 @@ class SpedContainer
      */
     private function getDependencyData($dependencyName)
     {
-        if (isset($this->configs[$dependencyName][self::DATA_DEPDENCY_NAME])) {
-            return $this->getItems($this->configs[$dependencyName][self::DATA_DEPDENCY_NAME]);
+        if (isset($this->configs[$dependencyName][self::DATA_DEPENDENCY_NAME])) {
+            return $this->getItems($this->configs[$dependencyName][self::DATA_DEPENDENCY_NAME]);
         }
         return false;
     }
