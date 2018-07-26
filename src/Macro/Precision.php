@@ -25,6 +25,15 @@ trait Precision
     }
 
     /**
+     * @param $value
+     * @return string
+     */
+    public function precision3($value)
+    {
+        return self::normalizeValue($value, 3);
+    }
+
+    /**
      * Apply precison numbers
      * @param $value
      * @return string
