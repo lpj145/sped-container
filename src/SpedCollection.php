@@ -56,6 +56,11 @@ class SpedCollection
                 return;
             }
 
+            if (isset($ruleOptions['preserve'])) {
+                $items[$ruleOptions['alias'] ?? $ruleName] = $value;
+                return;
+            }
+
             if (isset($ruleOptions['macros'])) {
                 $value = $this->executeMacros($ruleOptions['macros'], $value);
             }
