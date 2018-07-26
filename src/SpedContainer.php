@@ -59,6 +59,16 @@ class SpedContainer
     }
 
     /**
+     * @param $className
+     * @param null $default
+     * @return mixed|null
+     */
+    public function getConfigClass($className, $default = null)
+    {
+        return isset($this->configs[$className]) ? $this->configs[$className] : $default;
+    }
+
+    /**
      * @param $dependencyName
      */
     protected function executeDependencies($dependencyName)
