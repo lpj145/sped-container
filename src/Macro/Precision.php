@@ -11,7 +11,7 @@ trait Precision
      */
     public function normalizeValue($value, $base)
     {
-        return (new Number($value))->base($base);
+        return (Number::factory($value))->base($base);
     }
 
     /**
