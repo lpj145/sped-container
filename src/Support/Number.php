@@ -27,6 +27,19 @@ class Number extends \Cake\I18n\Number
     }
 
     /**
+     * @param $number
+     * @return Number
+     */
+    public static function factory($number)
+    {
+        if (is_string($number)) {
+            return static::fromFloat($number);
+        }
+
+        return new Number($number);
+    }
+
+    /**
      * @param Number $numbers
      * @return static
      */
