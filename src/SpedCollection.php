@@ -19,6 +19,7 @@ class SpedCollection
         // Precision macros
         'precision10' => 'this',
         'precision2' => 'this',
+        'precision3' => 'this',
         'precision4' => 'this',
         'normalizeValue' => 'this',
         // DateFormat
