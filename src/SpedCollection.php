@@ -5,7 +5,7 @@ use SpedTransform\Macro\DateFormat;
 use SpedTransform\Macro\Precision;
 use SpedTransform\Macro\SanitizeString;
 
-class SpedCollection
+class SpedCollection implements \Serializable
 {
     use SanitizeString,
         Precision,
@@ -211,5 +211,22 @@ class SpedCollection
         }
 
         return call_user_func_array([$object, $func], [$data]);
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return serialize($this->all());
+    }
+
+    /**
+     * @param string $serialized
+     * @return SpedCollection|void
+     */
+    public function unserialize($serialized)
+    {
+        return new static(unserialize($serialized));
     }
 }
